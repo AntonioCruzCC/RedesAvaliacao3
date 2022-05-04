@@ -1,0 +1,36 @@
+#PLAYBOOK
+---
+#PLAY
+- name: nginx
+  hosts: all
+  gather_facts: false
+  become: true
+  #TASKS  
+  tasks:
+  #INSTALL FTP SERVER
+    - name: install vsftpd
+      become: yes
+      apt:
+        name: vsftpd
+        state: present
+      notify: restart vsftp
+    #MOVE THE SERVER CONFIGURATION FILE
+    - name: move config file          
+      become: yes
+      copy:
+        src: ./vsftpd.conf            
+        dest: /etc/vsftpd.conf
+      notify: restart vsftp
+    #CREATE A LOGIN USER TO THE SERVER
+    - name: create a login user
+      become: yes
+      user:
+        name: teste
+        password: "$6$vOBO1TyfSTrtR$zq9vCB2EsfOWs0pIo4hhsbEO1DlfGhVWNu7ZSoWcfX3ntvZ6YfzHRBgMaPDmhqWa07jNg2IQRUcKy7tAEim5G0"
+      notify: restart vsftp
+  handlers:
+  #RESTART VSFTP SERVICE
+  - name: restart vsftp
+    service:
+      name: vsftpd
+      state: restarted

@@ -1,0 +1,34 @@
+#PLAYBOOK
+---
+#PLAY
+- name: samba
+  hosts: all
+  gather_facts: false
+  become: true
+  #TASKS  
+  tasks:
+    #INSTALL POSTFIX MAIL SERVER
+    - name: install postfix
+      become: true
+      apt:
+        name: postfix
+        state: present
+      notify: restart postfix
+    #INSTALL MAILUTILS
+    - name: install mailutils
+      become: true
+      apt:
+        name: mailutils
+        state: present
+    #INSTALL MUTT MAIL CLIENT
+    - name: install mutt client
+      become: true
+      apt:
+        name: mutt
+        state: present
+  handlers:
+  #RESTART POSTFIX SERVER
+  - name: restart postfix
+    service:
+      name: postfix
+      state: restarted

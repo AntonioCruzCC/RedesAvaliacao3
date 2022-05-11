@@ -17,5 +17,9 @@ Vagrant.configure("2") do |config|
     avaliacao3.vm.provision "ansible", playbook: "provisioning/email/email.yml"
     #PROVISION FTP SERVER
     avaliacao3.vm.provision "ansible", playbook: "provisioning/ftp/ftp.yml"
+    #PROVISION FIREWALL
+    avaliacao3.vm.provision "ansible", playbook: "provisioning/firewall/firewall.yml"
+    #PROVISION MYSQL
+    avaliacao3.vm.provision "ansible", playbook: "provisioning/database/database.yml"
   end
 end

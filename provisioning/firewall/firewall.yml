@@ -1,0 +1,20 @@
+#PLAYBOOK
+---
+#PLAY
+- name: nginx
+  hosts: all
+  gather_facts: false
+  become: true
+  #TASKS  
+  tasks:
+    #ENABLE FIREWALL ALLOWING EVERYTHING
+    - name: Allow everything and enable UFW
+      ufw:
+        state: enabled
+        policy: deny
+    #DENY ACCESS ON PORT 22, DENYING ACCESS VIA SSH
+    - name: Deny ssh access
+      ufw:
+        rule: allow
+        port: 22
+        proto: tcp

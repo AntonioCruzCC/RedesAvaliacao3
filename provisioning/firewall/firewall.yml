@@ -11,9 +11,9 @@
     - name: Allow everything and enable UFW
       ufw:
         state: enabled
-        policy: deny
-    #DENY ACCESS ON PORT 22, DENYING ACCESS VIA SSH
-    - name: Deny ssh access
+        policy: allow
+    #ALLOW ACCESS ON PORT 22, ALLOWING ACCESS VIA SSH
+    - name: Allow ssh access
       ufw:
         rule: allow
         port: 22

@@ -1,90 +1,106 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Avaliação 3</title>
-    <style>
-        
-        body {
-            margin: 0px;
-            font-family: Arial, Helvetica, sans-serif;
-            text-align: justify;
-            font-size: 25px;
-        }
-
-        .titulo {
-            font-size: 35px;
-        }
-
-        .centered {
-            max-width: 1000px;
-            margin: 0px auto 0px auto;
-            border-right: 1px solid black;
-            border-left: 1px solid black;
-            padding: 10px;
-        }
-
-        img {
-            max-width: 100%;
-            max-height: 100%;
-        }
-    </style>
 </head>
 
 <body>
-    <div class="centered">
-      
+    <div class="container">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="samba-tab" data-bs-toggle="tab" data-bs-target="#samba"
+                    type="button" role="tab" aria-controls="samba" aria-selected="true">Samba</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="proxy-tab" data-bs-toggle="tab" data-bs-target="#proxy" type="button"
+                    role="tab" aria-controls="proxy" aria-selected="false">Proxy</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="ftp-tab" data-bs-toggle="tab" data-bs-target="#ftp" type="button"
+                    role="tab" aria-controls="ftp" aria-selected="false">Ftp</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="firewall-tab" data-bs-toggle="tab" data-bs-target="#firewall" type="button"
+                    role="tab" aria-controls="firewall" aria-selected="false">Firewall</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="email-tab" data-bs-toggle="tab" data-bs-target="#email" type="button"
+                    role="tab" aria-controls="email" aria-selected="false">Email</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="database-tab" data-bs-toggle="tab" data-bs-target="#database" type="button"
+                    role="tab" aria-controls="database" aria-selected="false">Banco de dados</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="samba" role="tabpanel" aria-labelledby="samba-tab">
+                <div class="container-fluid">
+                    <h1>Servidor Samba</h1>
+                    <p>
+                        O Samba é um software que tem como principal finalidade o compartilhamento de arquivos de
+                        servidores Linux para consumo em computadores Windows. Desta forma, é possível utilizar o Linux
+                        como servidor de arquivos, servidor de impressão, entre outros e acessar estas informações
+                        através de computadores com Windows.
+                    </p>
+                    <p>
+                        Nesse trabalho foi provisionado um servidor samba e criado um diretório de compatilhamento de
+                        apenas leitura, para simular um diretório onde seriam distribuidos arquivos para funcionários de
+                        uma empresa, sendo que esses funcionários não possuem permissão para alterar os conteúdos do
+                        diretório.
+                        Para isso foi instanciado o servidor samba e compartilhado o diretório "/home/vagrant/samba" do
+                        servidor, e esse diretório foi definido como um diretório de apenas leitura. Para acessar esse
+                        diretório os seguintes passos devem ser seguidos.
+                    </p>
+                    <ol>
+                        <li>Execute o vagrantfile desse trabalho utilizando o comando "vagrant up";</li>
+                        <li>Acesse o gerenciador de arquivos do seu computador e conecte-se ao servidor em
+                            "smb://192.168.56.56/samba";</li>
+                        <li>Insira o Login "vagrant" e a Senha "123" e insira qualquer informação no campo domínio
+                            conforme a imagem abaixo.</li>
+                    </ol>
+                    <img src="imagens/loginSamba.png" alt="Login Samba">
+                    <p>
+                        Após conectar-se você terá acessado o diretório compartilhado e terá acesso ao
+                        "arquivoImportante.txt" como na imagem abaixo, lembrando que esse diretório é de apenas leitura,
+                        portanto esse arquivo
+                        não pode ser excluido, nem nada pode ser inserido nesse diretório.
+                    </p>
+                    <img src="imagens/diretorioCompartilhado.png" alt="Diretório Samba">
+                    <p>
+                        Para visualizar os arquivos de provisionamento acesse esse projeto no github clicando <a
+                            href="https://github.com/AntonioCruzCC/RedesAvaliacao3" target="blank">aqui</a>
+                    </p>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="proxy" role="tabpanel" aria-labelledby="proxy-tab">
+                <h1>Proxy</h1>
+            </div>
+            <div class="tab-pane fade" id="ftp" role="tabpanel" aria-labelledby="ftp-tab">
+                <h1>Ftp</h1>
+            </div>
+            <div class="tab-pane fade" id="firewall" role="tabpanel" aria-labelledby="firewall-tab">
+                <h1>Firewall</h1>
+            </div>
+            <div class="tab-pane fade" id="email" role="tabpanel" aria-labelledby="email-tab">
+                <h1>Email</h1>
+            </div>
+            <div class="tab-pane fade" id="database" role="tabpanel" aria-labelledby="database-tab">
+                <h1>Banco de Dados</h1>
+            </div>
+        </div>
 
-        <h1 class="titulo">
-            Pre-requisitos para provisionar o servidor samba com vagrant + ansible.
-        </h1>
-        <ol>
-            <li>Insale o vagrant usando o comando "apt install vagrant".</li>
-            <li>Instale o virtualbox usando o comando "apt install virtualbox".</li>
-            <li>Instale o ansible usando o comando "apt install ansible".</li>
-        </ol>
-        </p>
 
-        <h1 class="titulo">
-            Passos para provisionar uma box usando vagrant com ansible
-        </h1>   
-
-        <ol>
-            <li>
-                Crie um vagrant file com as configurações iniciais da box desejada e defina que o provisionamento
-                será feito com o ansible e defina o playbook utilizando o seguinte comando:
-                (box).vm.provision "ansible", playbook: "provisioning/samba.yml"
-            </li>
-            <li>
-                Crie o playbook para ser utilizado na box utilizando a extensão .yml como nos arquivos disponibilziados no github <a href="https://github.com/AntonioCruzCC/RedesAvaliacao2" target="blank">Clique Aqui </a>
-            </li>
-            <li>
-                Levante a box utilizando o comando vagrant up.
-            </li>
-        </ol>
-
-        <h1 class="titulo">
-            Acessando Servidor Samba:
-      </h1>
-            <li>
-            Abra o gerenciado de arquivos e na barra de pesquisa digite: smb://192.168.56.56/samba/
-            </li>
-           
-            <li>
-               Após localizar, será solicitado dados de acesso:
-                Usuário = vagrant e Senha= 123.
-            </li>
-            
-            <figure>
-                <img src="imagens/samba.jpeg">
-            </figure>
-            <p>O diretório Samba é um diretório apenas de leitura, não sendo possível alterar seu conteúdo, pois foi assim configurado no Playbook, porém essa confiração pode ser alterada</p>
-    <br>
-       <p>Além do que foi criado, o servidor Samba pode ser configurado de diversas formas, criando mais diretórios compartilhados e definindo usuários conforme necessidade de acessos </p> 
-       <br> Para mais informações sobre o servidores Samba: <a href="https://www.samba.org/samba/docs/" target="blank">clique aqui </a>
-            <p>OBS: O código fonte deste projeto está comentado, assim poderá ter entendimento do mesmo.</p>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

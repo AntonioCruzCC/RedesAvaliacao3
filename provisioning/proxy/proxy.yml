@@ -1,0 +1,37 @@
+#PLAYBOOK
+---
+#PLAY
+- name: nginx
+  hosts: all
+  gather_facts: false
+  become: true
+  vars:
+    squid_port: 3128
+    localnet: 192.168.0.0/24
+  tasks:
+    - name: install squid
+      apt:
+        name: ['squid']
+        state: present
+      notify: restart squid
+    #COPY DENYED WEBSITE LIST
+    - name: Copy deny website list
+      copy: 
+        src: denyWebsites.lst
+        dest: /etc/squid/ 
+        owner:  root 
+        mode: 0644
+    #COPY SQUID CONFIGURATION FILE
+    - name: Copy squid configuration file
+      copy: 
+        src: squid.conf
+        dest: /etc/squid/ 
+        owner:  root
+        mode: 0644
+      notify: restart squid
+  handlers:
+    #RESTART SQUID SERVICE
+    - name: restart squid
+      service:
+        name: squid
+        state: restarted

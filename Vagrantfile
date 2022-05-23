@@ -21,5 +21,7 @@ Vagrant.configure("2") do |config|
     avaliacao3.vm.provision "ansible", playbook: "provisioning/firewall/firewall.yml"
     #PROVISION MYSQL
     avaliacao3.vm.provision "ansible", playbook: "provisioning/database/database.yml"
+    #PROVISION SQUID PROXY SERVER
+    avaliacao3.vm.provision "ansible", playbook: "provisioning/proxy/proxy.yml"
   end
 end

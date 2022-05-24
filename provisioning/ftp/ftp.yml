@@ -26,7 +26,7 @@
       become: yes
       user:
         name: teste
-        password: "password"
+        password: "$6$vOBO1TyfSTrtR$zq9vCB2EsfOWs0pIo4hhsbEO1DlfGhVWNu7ZSoWcfX3ntvZ6YfzHRBgMaPDmhqWa07jNg2IQRUcKy7tAEim5G0"
       notify: restart vsftp
   handlers:
   #RESTART VSFTP SERVICE

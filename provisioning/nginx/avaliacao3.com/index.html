@@ -81,11 +81,55 @@
             <div class="tab-pane fade" id="proxy" role="tabpanel" aria-labelledby="proxy-tab">
                 <div class="container-fluid">
                     <h1>Proxy</h1>
+                    <p>
+                        Um servidor proxy é uma ponte entre você e o resto da internet. Normalmente, ao usar o navegador
+                        na internet, você será conectado diretamente ao site acessado. Ao usar um proxy, seu navegador
+                        se
+                        conecta primeiro a ele, que encaminha seu tráfego ao site. Por isso, os servidores proxy são
+                        também conhecidos como “proxies diretos”. Um proxy também recebe a resposta do site e envia de
+                        volta a você.
+                    </p>
+                    <p>
+                        O serviço utilizado nesta server proxy foi o Squid, pois o uso do mesmo como Proxy/Cache é uma
+                        das opções mais utilizadas em ambientes corporativos que adotam software livre para administrar
+                        a rede, seja através da otimização e melhoria do desempenho da rede atuando como servidor de
+                        cache ou como proxy, implementando restrições de acesso à Internet, que nem sempre é possível
+                        fazer através do firewall.
+                    </p>
+                    <p>
+                        Nesse trabalho foi levantado um servidor de proxy que bloqueia sites de busca, para testar o
+                        funcionamento do servidor de proxy realize os seguintes passos:
+                    </p>
+                    <ol>
+                        <li>Execute o vagrantfile desse trabalho utilizando o comando "vagrant up";</li>
+                        <li>Após isso configure seu computador para usar como proxy o ip "192.168.56.56" como na imagem
+                            abaixo;</li>
+                        <img src="imagens/proxyConfig.png" alt="Configuração proxy">
+                        <li>Tente acessar um site de busca como "google.com" e perceba que ele está inacessível.</li>
+                        <img src="imagens/proxyWorking.png" width="800" height="600" alt="Servidor proxy funcionando">
+                    </ol>
+                    <p>
+                        Seguindo esses passos você verificou que o servidor de proxy está configurado e funcionando, não
+                        permitindo o acesso a sites de busca, para alterar a lista de sites os quais o servidor de proxy
+                        não permite acesso, altere o arquivo "/provisioning/proxy/denyWebsites.lst".
+                    </p>
+                    <p>
+                        Para visualizar os arquivos de provisionamento acesse esse projeto no github clicando <a
+                            href="https://github.com/AntonioCruzCC/RedesAvaliacao3" target="blank">aqui</a>
+                    </p>
                 </div>
             </div>
             <div class="tab-pane fade" id="ftp" role="tabpanel" aria-labelledby="ftp-tab">
                 <div class="container-fluid">
                     <h1>Ftp</h1>
+                    <p>
+                        FTP é a sigla para File Transfer Protocol, um termo que, traduzido para o português, significa
+                        Protocolo de Transferência de Arquivos. Ele é basicamente um tipo de conexão que permite a troca
+                        de arquivos entre dois computadores conectados à internet. Com isso, você pode enviar qualquer
+                        coisa para uma outra máquina ou armazená-los em um servidor FTP, ficando ela sempre disponível
+                        para o usuário acessar. Para esse trabalho optamos por utilizar o vsftp. É um serviço simples de
+                        transferência de arquivos para sistemas baseados em Unix. O serviço suporta IPv6, TLS e FTPS .
+                    </p>
                 </div>
             </div>
             <div class="tab-pane fade" id="firewall" role="tabpanel" aria-labelledby="firewall-tab">
@@ -130,6 +174,64 @@
             <div class="tab-pane fade" id="email" role="tabpanel" aria-labelledby="email-tab">
                 <div class="container-fluid">
                     <h1>Email</h1>
+                    <p>
+                        Um servidor de email é um serviço de hospedagem de e-mail no qual eles são armazenados.
+                        Estes serviços são responsáveis pelo direcionamento de um e-mail de um remetente até seu
+                        destinatário.
+
+                    </p>
+                    <p>
+                        Neste trabalho, demonstramos o servidor de e-mail sendo colocado para rodar em uma box, como
+                        também o a sua utilização:
+
+                    </p>
+
+                    <p>
+                        <li>O servidor de e-mails escolhido para realização do desenvolvimento do projeto foi o Postfix,
+                            o qual é um software open source
+                            que atua como um agente de transferência de e-mails.</li>
+                        A imagem abaixo demonstra o PLAYBOOK de criação e inicialização do servidor, qual é chamado
+                        através do Vagrantfile:
+                        <img src="imagens/Email_yml.png" alt="Playbook email">
+                    </p>
+                    <p>
+                    <h2>Utilizando o servidor de e-mail</h2>
+                    Para utilizar o servidor de e-mail e testa-lo realize o seguinte processo:
+                    realize a criação de um usuário destinatário:
+                    $ adduser destinatario
+                    <img src="imagens/Criar_User_Email.png" alt="Criação de Usuário">
+                    Após criado o usuário, será demonstrado o processo de envio de um e-mail:
+
+                    </p>
+                    <p>
+                        Realize o acesso o servidor via telnet:
+
+                    <p> $ telnet localhost 25 no terminal do telnet, insira os comandos para crição e envio do e-mail:
+                    </p>
+                    <br> MAIL FROM: root@localhost
+                    <br> RCPT TO: destinatario@localhost
+                    <br> DATA
+                    <br> Subject: Título do Email
+                    <br> Mensagem Teste
+                    <br> .
+                    <br> Obs: O ponto (.) refere-se ao final do corpo e-mail.
+                    <br> Após o envio, saia do telnet com o comando: $quit
+                    <br>
+                    <img src="imagens/Teste_Email.png" alt="Envio do E-mail">
+                    <p> Para verificar o e-mail, acesse através dos comandos:
+                        <br> $ su destinatario
+                        <br>$ mail
+                    </p>
+
+                    <img src="imagens/email.png" alt="Visualização do E-mail">
+
+                    </p>
+                    <p>
+
+                        Para visualizar os arquivos de provisionamento acesse esse projeto no github clicando <a
+                            href="https://github.com/AntonioCruzCC/RedesAvaliacao3" target="blank">aqui</a>
+
+                    </p>
                 </div>
             </div>
             <div class="tab-pane fade" id="database" role="tabpanel" aria-labelledby="database-tab">

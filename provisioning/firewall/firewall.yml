@@ -12,9 +12,9 @@
       ufw:
         state: enabled
         policy: allow
-    #ALLOW ACCESS ON PORT 22, ALLOWING ACCESS VIA SSH
-    - name: Allow ssh access
+    #ALLOW ACCESS ON PORT 80, ALLOWING HTTP TRAFFIC
+    - name: Allow http traffic
       ufw:
         rule: allow
-        port: 22
+        port: 80
         proto: tcp

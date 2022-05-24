@@ -79,19 +79,94 @@
                 </div>
             </div>
             <div class="tab-pane fade" id="proxy" role="tabpanel" aria-labelledby="proxy-tab">
-                <h1>Proxy</h1>
+                <div class="container-fluid">
+                    <h1>Proxy</h1>
+                </div>
             </div>
             <div class="tab-pane fade" id="ftp" role="tabpanel" aria-labelledby="ftp-tab">
-                <h1>Ftp</h1>
+                <div class="container-fluid">
+                    <h1>Ftp</h1>
+                </div>
             </div>
             <div class="tab-pane fade" id="firewall" role="tabpanel" aria-labelledby="firewall-tab">
-                <h1>Firewall</h1>
+                <div class="container-fluid">
+                    <h1>Firewall</h1>
+                    <p>
+                        Um firewall é um dispositivo de segurança da rede que monitora o tráfego de rede de entrada e
+                        saída e decide permitir ou bloquear tráfegos específicos de acordo com um conjunto definido de
+                        regras de segurança. O firewall utilizado nesse trabalho foi o UFW, pois o mesmo já vem
+                        instalado em distribuições linux como a utilizada na criação da box desse trabalho a bionic64.
+                    </p>
+                    <p>
+                        Por ser um firewall que já vem instalado na distribuição linux utilizada, no playbook de
+                        provisionamento foi necessário apenas fazer a ativação do firewall. O mesmo foi configurado para
+                        liberar acesso a todas as portas definindo a política como "allow" como na imagem abaixo.
+                    </p>
+                    <img src="imagens/firewallPlaybook.png" alt="Playbook firewall">
+                    <p>
+                        Também separadamente há configurada uma play que habilita o tráfego pela porta 80, a porta
+                        responsável pelo protocolo http, da forma com que está escrito esse playbook, essa play não tem
+                        utilidade, já que a política do firewall já habilita o tráfego na porta 80. Porém essa play foi
+                        mantida para permitir que seja feito o teste de funcionamento do firewall. Para testar o
+                        firewall execute as ações listadas abaixo:
+                    </p>
+                    <ol>
+                        <li>Execute o vagrantfile desse trabalho utilizando o comando "vagrant up";</li>
+                        <li>Acesse a página web em seu navegador pela url "http://192.168.56.56";</li>
+                        <li>Note que a página está acessível;</li>
+                        <li>Altere o playbook em "provisioning/firewall/firewall.yml" com a regra "deny" para a play
+                            "Allow http traffic ufw" conforme a imagem abaixo;</li>
+                        <img src="imagens/denyHttp.png" alt="Deny http">
+                        <li>Execute o comando "vagrant provision" e acesse a url "http://192.168.56.56" novamente e
+                            perceba que o site não está mais acessível.</li>
+                        <img src="imagens/firewallDeny.png" width="800" height="600" alt="Http traffic denied">
+                    </ol>
+                    <p>
+                        Para visualizar os arquivos de provisionamento acesse esse projeto no github clicando <a
+                            href="https://github.com/AntonioCruzCC/RedesAvaliacao3" target="blank">aqui</a>
+                    </p>
+                </div>
             </div>
             <div class="tab-pane fade" id="email" role="tabpanel" aria-labelledby="email-tab">
-                <h1>Email</h1>
+                <div class="container-fluid">
+                    <h1>Email</h1>
+                </div>
             </div>
             <div class="tab-pane fade" id="database" role="tabpanel" aria-labelledby="database-tab">
-                <h1>Banco de Dados</h1>
+                <div class="container-fluid">
+                    <h1>Banco de Dados MySQL</h1>
+                    <p>
+                        O MySQL é um sistema de gerenciamento de banco de dados (SGBD), que utiliza a linguagem SQL
+                        (Linguagem de Consulta Estruturada) como interface. É atualmente um dos sistemas de
+                        gerenciamento de bancos de dados mais populares da Oracle Corporation, com mais de 10 milhões de
+                        instalações pelo mundo.
+                    </p>
+                    <p>
+                        Nesse trabalho o SGBD MySQL foi instalado na box utilizando o vagrant com o provisionador
+                        ansible, foi configurada a senha "password" para o usuário root e criado um banco de dados
+                        chamado "test". O ansible pode ser utilizado para provisionar um banco de dados e carregar
+                        informações para o mesmo através de um arquivo de dump, porém para testes não foi adicionado
+                        nenhum dado no banco test.
+                    </p>
+                    <p>
+                        Para validar o funcionamento do banco de dados MySQL siga os seguintes passos:
+                    </p>
+                    <ol>
+                        <li>Execute o vagrantfile desse trabalho utilizando o comando "vagrant up";</li>
+                        <li>Acesse a box criada utilizando o comando "vagrant ssh";</li>
+                        <li>Dentro do shell da box criada utilize o comando "sudo mysql -u root -p";</li>
+                        <li>Digite a senha do usuário root, a senha é "password".</li>
+                    </ol>
+                    <img src="imagens/acessandoMysql.png" alt="Acessando o MySQL">
+                    <p>
+                        Feito isso você estará conectado no shell do MySQL e poderá utilizar os comandos para acessar o
+                        banco de dados teste, importar dados, ou inserir dados manualmente.
+                    </p>
+                    <p>
+                        Para visualizar os arquivos de provisionamento acesse esse projeto no github clicando <a
+                            href="https://github.com/AntonioCruzCC/RedesAvaliacao3" target="blank">aqui</a>
+                    </p>
+                </div>
             </div>
         </div>
 

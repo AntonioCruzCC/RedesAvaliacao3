@@ -1,7 +1,7 @@
 #PLAYBOOK
 ---
 #PLAY
-- name: nginx
+- name: firewall
   hosts: all
   gather_facts: false
   become: true

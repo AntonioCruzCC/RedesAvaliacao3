@@ -23,7 +23,7 @@
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="ftp-tab" data-bs-toggle="tab" data-bs-target="#ftp" type="button"
-                    role="tab" aria-controls="ftp" aria-selected="false">Ftp</button>
+                    role="tab" aria-controls="FTP" aria-selected="false">FTP</button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="firewall-tab" data-bs-toggle="tab" data-bs-target="#firewall" type="button"
@@ -121,7 +121,7 @@
             </div>
             <div class="tab-pane fade" id="ftp" role="tabpanel" aria-labelledby="ftp-tab">
                 <div class="container-fluid">
-                    <h1>Ftp</h1>
+                    <h1>FTP</h1>
                     <p>
                         FTP é a sigla para File Transfer Protocol, um termo que, traduzido para o português, significa
                         Protocolo de Transferência de Arquivos. Ele é basicamente um tipo de conexão que permite a troca
@@ -129,6 +129,25 @@
                         coisa para uma outra máquina ou armazená-los em um servidor FTP, ficando ela sempre disponível
                         para o usuário acessar. Para esse trabalho optamos por utilizar o vsftp. É um serviço simples de
                         transferência de arquivos para sistemas baseados em Unix. O serviço suporta IPv6, TLS e FTPS .
+                    </p>
+                    <p>
+                        Configuração do Playbook do servidor FTP, este que é chamado pelo Vagrantfile
+                    </p>
+                    <img src="imagens/config_ftp.png" alt="Configuração do FTP">
+                    <p>
+                    <h1>Utilizando servidor FTP:</h1>
+                    </p>
+                    <p>
+                        Utilizamos o serviço do FileZilla para realizarmos a conexão com o servidor:
+                        <img src="imagens/file_zilla.png" alt="Configuração do FileZilla">
+                    </p>
+                    <p>
+                        Após realizada as configurações no FileZilla, será solicitada a senha e então insira a senha "teste".
+                    </p>
+
+                    <p>
+                        Para visualizar os arquivos de provisionamento acesse esse projeto no github clicando <a
+                            href="https://github.com/AntonioCruzCC/RedesAvaliacao3" target="blank">aqui</a>
                     </p>
                 </div>
             </div>

@@ -19,6 +19,11 @@
       apt:  upgrade=dist
             force_apt_get=yes
             #RUN APT INSTALL NGINX
+    #INSTALL NEEDED PYTHON PACKAGES
+    - name: install python related packages
+      apt:
+        name: ['python3-mysqldb', 'python3-pip', 'python3-pymysql']
+        state: present
     - name: install nginx
       #ACTION
       apt:

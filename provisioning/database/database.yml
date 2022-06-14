@@ -16,11 +16,6 @@
         name:   ['mysql-server']
         state:  latest
       notify: restart mysql
-    #INSTALL NEEDED PYTHON PACKAGES
-    - name: install python related packages
-      apt:
-        name: ['python3-mysqldb', 'python3-pip', 'python3-pymysql']
-        state: present
     #COPY THE MYSQL CONF FILE TO REMOTE HOST
     - name: Copy the my.cnf
       copy: 

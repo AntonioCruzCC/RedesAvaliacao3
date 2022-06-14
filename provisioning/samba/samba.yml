@@ -14,10 +14,10 @@
         name: ['samba']
         state: latest
     #CREATE SHARED DIRECTORY
-    - name: create shared directory
+    - name: create a public read only directory
       #ACTION
       file:
-        path: /home/vagrant/samba/
+        path: /home/vagrant/public/
         state: directory
         mode: '0775'
         owner: "vagrant"
@@ -26,27 +26,50 @@
     - name: send arquivoImportante.txt
       copy:
         src: ./arquivoImportante.txt
-        dest: /home/vagrant/samba/
+        dest: /home/vagrant/public/
         mode: '0766'
         owner: "vagrant"
         group: "vagrant"
-    #ADD SHARED DIRECTORY TO THE SAMBA CONFIG
-    - name: add shared directory config
-      #ACTION
+
+    - name: create group employees
+      group:
+        name: employees
+        state: present
+    
+    - name: create employee user
+      user:
+        name: employee
+        group: employees
+
+    - name: create an employees only directory
+      file:
+        path: /home/vagrant/employees/
+        state: directory
+        mode: '0770'
+        owner: "root"
+        group: "employees"
+
+    - name: add employees directory to samba config
       blockinfile:
         path:  /etc/samba/smb.conf
         insertafter: EOF
         block: |
-          [samba]
-            comment = Samba on Ubuntu
-            path = /home/vagrant/samba
+          [employees]
+            path = /home/vagrant/employees
+            valid users = @employees
+            read only = no
+            browsable = yes
+          [public]
+            path = /home/vagrant/public/
             read only = yes
             browsable = yes
       notify: restart samba
-    #DEFINE SAMBA USER
+
     - name: set Samba passwords for each user
-      #ACTION
-      shell: "printf '123\n123\n' | smbpasswd -a vagrant"
+      shell: "{{ item }}"
+      with_items:
+        - printf '123\n123\n' | smbpasswd -a vagrant
+        - printf '1234\n1234\n' | smbpasswd -a employee
   handlers:
     #RESTART NGINX SERVICE
     - name: restart samba

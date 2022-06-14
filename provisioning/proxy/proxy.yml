@@ -19,15 +19,18 @@
       copy: 
         src: denyWebsites.lst
         dest: /etc/squid/ 
-        owner:  root 
-        mode: 0644
+        owner: root
+        group: root
+        mode: '0644'
+      notify: restart squid
     #COPY SQUID CONFIGURATION FILE
-    - name: Copy squid configuration file
-      copy: 
+    - name: Copy squid configuryation file
+      copy:
         src: squid.conf
-        dest: /etc/squid/ 
-        owner:  root
-        mode: 0644
+        dest: /etc/squid/squid.conf
+        owner: root
+        group: root
+        mode: '0644'
       notify: restart squid
   handlers:
     #RESTART SQUID SERVICE

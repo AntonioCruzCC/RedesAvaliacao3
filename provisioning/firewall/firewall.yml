@@ -1,20 +1,21 @@
-#PLAYBOOK
 ---
-#PLAY
 - name: firewall
   hosts: all
   gather_facts: false
   become: true
-  #TASKS  
   tasks:
-    #ENABLE FIREWALL ALLOWING EVERYTHING
     - name: Allow everything and enable UFW
       ufw:
         state: enabled
         policy: allow
-    #ALLOW ACCESS ON PORT 80, ALLOWING HTTP TRAFFIC
-    - name: Allow http traffic
+    - name: Deny torrent related ports
       ufw:
-        rule: allow
-        port: 80
+        rule: deny
+        port: "6881:6889"
         proto: tcp
+      notify: restart ufw
+  handlers:
+    - name: restart ufw
+      service:
+        name: ufw
+        state: restarted

@@ -1,28 +1,30 @@
-#PLAYBOOK
 ---
-#PLAY
 - name: samba
   hosts: all
   gather_facts: false
   become: true
-  #TASKS  
   tasks:
-    #RUN APT INSTALL SAMBA
     - name: install samba
-      #ACTION
       apt:
         name: ['samba']
         state: latest
-    #CREATE SHARED DIRECTORY
+
+    - name: Copy samba configuryation file
+      copy:
+        src: smb.conf
+        dest: /etc/samba/smb.conf
+        owner: root
+        group: root
+        mode: '0644'
+
     - name: create a public read only directory
-      #ACTION
       file:
         path: /home/vagrant/public/
         state: directory
         mode: '0775'
         owner: "vagrant"
         group: "vagrant"
-    #PUT  arquivoImportante.txt INSIDE THE SHARED DIRECTORY
+
     - name: send arquivoImportante.txt
       copy:
         src: ./arquivoImportante.txt
@@ -49,27 +51,14 @@
         owner: "root"
         group: "employees"
 
-    - name: add employees directory to samba config
-      blockinfile:
-        path:  /etc/samba/smb.conf
-        insertafter: EOF
-        block: |
-          [employees]
-            path = /home/vagrant/employees
-            valid users = @employees
-            read only = no
-            browsable = yes
-          [public]
-            path = /home/vagrant/public/
-            read only = yes
-            browsable = yes
-      notify: restart samba
-
     - name: set Samba passwords for each user
       shell: "{{ item }}"
       with_items:
         - printf '123\n123\n' | smbpasswd -a vagrant
         - printf '1234\n1234\n' | smbpasswd -a employee
+        - pdbedit -P "min password length" -C 8
+        - pdbedit -P "maximum password age" -C 604800
+        - pdbedit -P "bad lockout attempt" -C 3
   handlers:
     #RESTART NGINX SERVICE
     - name: restart samba

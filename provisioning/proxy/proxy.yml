@@ -1,6 +1,6 @@
-#PLAYBOOK
+
 ---
-#PLAY
+
 - name: proxy
   hosts: all
   gather_facts: false
@@ -14,16 +14,25 @@
         name: ['squid']
         state: present
       notify: restart squid
-    #COPY DENYED WEBSITE LIST
-    - name: Copy deny website list
+
+    - name: Copy regex list
       copy: 
-        src: denyWebsites.lst
+        src: regex.lst
         dest: /etc/squid/ 
         owner: root
         group: root
         mode: '0644'
       notify: restart squid
-    #COPY SQUID CONFIGURATION FILE
+
+    - name: Copy unproductive sites list
+      copy: 
+        src: unproductiveSites.lst
+        dest: /etc/squid/ 
+        owner: root
+        group: root
+        mode: '0644'
+      notify: restart squid
+    
     - name: Copy squid configuryation file
       copy:
         src: squid.conf

@@ -4,16 +4,28 @@
   gather_facts: false
   become: true
   tasks:
-    - name: Allow everything and enable UFW
+    - name: enable UFW
       ufw:
         state: enabled
         policy: allow
+      notify: restart ufw
+
+    - name: Deny access from 192.168.0.102
+      ufw:
+        rule: deny
+        port: "80"
+        proto: tcp
+      notify: restart ufw
+      
     - name: Deny torrent related ports
       ufw:
         rule: deny
         port: "6881:6889"
-        proto: tcp
+        proto: "{{ item }}"
       notify: restart ufw
+      with_items:
+        - tcp
+        - udp
   handlers:
     - name: restart ufw
       service:

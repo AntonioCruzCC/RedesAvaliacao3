@@ -9,6 +9,7 @@ Vagrant.configure("2") do |config|
     avaliacao3.vm.box = "ubuntu/bionic64"
     #DEFINE BOX IP (PREFERABLY ON 192.168.56.0/21 RANGE)
     avaliacao3.vm.network "private_network", ip: "192.168.56.56"
+    avaliacao3.vm.network "public_network"
     #PROVISION NGINX SERVER
     avaliacao3.vm.provision "ansible", playbook: "provisioning/nginx/nginx.yml"
     #PROVISION SAMBA SERVER

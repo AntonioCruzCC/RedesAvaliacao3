@@ -7,296 +7,91 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Avaliação 3</title>
+    <title>Avaliação Final</title>
 </head>
 
 <body>
     <div class="container">
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="samba-tab" data-bs-toggle="tab" data-bs-target="#samba"
-                    type="button" role="tab" aria-controls="samba" aria-selected="true">Samba</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="proxy-tab" data-bs-toggle="tab" data-bs-target="#proxy" type="button"
-                    role="tab" aria-controls="proxy" aria-selected="false">Proxy</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="ftp-tab" data-bs-toggle="tab" data-bs-target="#ftp" type="button"
-                    role="tab" aria-controls="FTP" aria-selected="false">FTP</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="firewall-tab" data-bs-toggle="tab" data-bs-target="#firewall" type="button"
-                    role="tab" aria-controls="firewall" aria-selected="false">Firewall</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="email-tab" data-bs-toggle="tab" data-bs-target="#email" type="button"
-                    role="tab" aria-controls="email" aria-selected="false">Email</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="database-tab" data-bs-toggle="tab" data-bs-target="#database" type="button"
-                    role="tab" aria-controls="database" aria-selected="false">Banco de dados</button>
-            </li>
-        </ul>
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="samba" role="tabpanel" aria-labelledby="samba-tab">
-                <div class="container-fluid">
-                    <h1>Servidor Samba</h1>
-                    <p>
-                        O Samba é um software que tem como principal finalidade o compartilhamento de arquivos de
-                        servidores Linux para consumo em computadores Windows. Desta forma, é possível utilizar o Linux
-                        como servidor de arquivos, servidor de impressão, entre outros e acessar estas informações
-                        através de computadores com Windows.
-                    </p>
-                    <p>
-                        Nesse trabalho foi provisionado um servidor samba e criado um diretório de compatilhamento de
-                        apenas leitura, para simular um diretório onde seriam distribuidos arquivos para funcionários de
-                        uma empresa, sendo que esses funcionários não possuem permissão para alterar os conteúdos do
-                        diretório.
-                        Para isso foi instanciado o servidor samba e compartilhado o diretório "/home/vagrant/samba" do
-                        servidor, e esse diretório foi definido como um diretório de apenas leitura. Para acessar esse
-                        diretório os seguintes passos devem ser seguidos.
-                    </p>
-                    <ol>
-                        <li>Execute o vagrantfile desse trabalho utilizando o comando "vagrant up";</li>
-                        <li>Acesse o gerenciador de arquivos do seu computador e conecte-se ao servidor em
-                            "smb://192.168.56.56/samba";</li>
-                        <li>Insira o Login "vagrant" e a Senha "123" e insira qualquer informação no campo domínio
-                            conforme a imagem abaixo.</li>
-                    </ol>
-                    <img src="imagens/loginSamba.png" alt="Login Samba">
-                    <p>
-                        Após conectar-se você terá acessado o diretório compartilhado e terá acesso ao
-                        "arquivoImportante.txt" como na imagem abaixo, lembrando que esse diretório é de apenas leitura,
-                        portanto esse arquivo
-                        não pode ser excluido, nem nada pode ser inserido nesse diretório.
-                    </p>
-                    <img src="imagens/diretorioCompartilhado.png" alt="Diretório Samba">
-                    <p>
-                        Para visualizar os arquivos de provisionamento acesse esse projeto no github clicando <a
-                            href="https://github.com/AntonioCruzCC/RedesAvaliacao3" target="blank">aqui</a>
-                    </p>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="proxy" role="tabpanel" aria-labelledby="proxy-tab">
-                <div class="container-fluid">
-                    <h1>Proxy</h1>
-                    <p>
-                        Um servidor proxy é uma ponte entre você e o resto da internet. Normalmente, ao usar o navegador
-                        na internet, você será conectado diretamente ao site acessado. Ao usar um proxy, seu navegador
-                        se
-                        conecta primeiro a ele, que encaminha seu tráfego ao site. Por isso, os servidores proxy são
-                        também conhecidos como “proxies diretos”. Um proxy também recebe a resposta do site e envia de
-                        volta a você.
-                    </p>
-                    <p>
-                        O serviço utilizado nesta server proxy foi o Squid, pois o uso do mesmo como Proxy/Cache é uma
-                        das opções mais utilizadas em ambientes corporativos que adotam software livre para administrar
-                        a rede, seja através da otimização e melhoria do desempenho da rede atuando como servidor de
-                        cache ou como proxy, implementando restrições de acesso à Internet, que nem sempre é possível
-                        fazer através do firewall.
-                    </p>
-                    <p>
-                        Nesse trabalho foi levantado um servidor de proxy que bloqueia sites de busca, para testar o
-                        funcionamento do servidor de proxy realize os seguintes passos:
-                    </p>
-                    <ol>
-                        <li>Execute o vagrantfile desse trabalho utilizando o comando "vagrant up";</li>
-                        <li>Após isso configure seu computador para usar como proxy o ip "192.168.56.56" porta "3128" como na imagem
-                            abaixo;</li>
-                        <img src="imagens/proxyConfig.png" alt="Configuração proxy">
-                        <li>Tente acessar um site de busca como "google.com" e perceba que ele está inacessível.</li>
-                        <img src="imagens/proxyWorking.png" width="800" height="600" alt="Servidor proxy funcionando">
-                    </ol>
-                    <p>
-                        Seguindo esses passos você verificou que o servidor de proxy está configurado e funcionando, não
-                        permitindo o acesso a sites de busca, para alterar a lista de sites os quais o servidor de proxy
-                        não permite acesso, altere o arquivo "/provisioning/proxy/denyWebsites.lst".
-                    </p>
-                    <p>
-                        Para visualizar os arquivos de provisionamento acesse esse projeto no github clicando <a
-                            href="https://github.com/AntonioCruzCC/RedesAvaliacao3" target="blank">aqui</a>
-                    </p>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="ftp" role="tabpanel" aria-labelledby="ftp-tab">
-                <div class="container-fluid">
-                    <h1>FTP</h1>
-                    <p>
-                        FTP é a sigla para File Transfer Protocol, um termo que, traduzido para o português, significa
-                        Protocolo de Transferência de Arquivos. Ele é basicamente um tipo de conexão que permite a troca
-                        de arquivos entre dois computadores conectados à internet. Com isso, você pode enviar qualquer
-                        coisa para uma outra máquina ou armazená-los em um servidor FTP, ficando ela sempre disponível
-                        para o usuário acessar. Para esse trabalho optamos por utilizar o vsftp. É um serviço simples de
-                        transferência de arquivos para sistemas baseados em Unix. O serviço suporta IPv6, TLS e FTPS .
-                    </p>
-                    <p>
-                        Configuração do Playbook do servidor FTP, este que é chamado pelo Vagrantfile
-                    </p>
-                    <img src="imagens/config_ftp.png" alt="Configuração do FTP">
-                    <p>
-                    <h1>Utilizando servidor FTP:</h1>
-                    </p>
-                    <p>
-                        Utilizamos o serviço do FileZilla para realizarmos a conexão com o servidor:
-                        <img src="imagens/file_zilla.png" alt="Configuração do FileZilla">
-                    </p>
-                    <p>
-                        Após realizada as configurações no FileZilla, será solicitada a senha e então insira a senha "teste".
-                    </p>
+        <h1>Proposta de Política de Segurança - Trabalho Final </h1>
+        <br>
+        <h3>André Fava, Antônio Cruz e Matheus Tamiozzo </h2>
+            <p>
+                Nesse documento estão descritas as regras da política de segurança que será implementada para o trabalho
+                final da disciplina de Redes de Computadores II. Serão definidas três regras para cada serviço executado
+                no box do trabalho final, sendo que três dessas regras serão consideradas regras diferenciadas.
+            </p>
+            <br>
 
-                    <p>
-                        Para visualizar os arquivos de provisionamento acesse esse projeto no github clicando <a
-                            href="https://github.com/AntonioCruzCC/RedesAvaliacao3" target="blank">aqui</a>
-                    </p>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="firewall" role="tabpanel" aria-labelledby="firewall-tab">
-                <div class="container-fluid">
-                    <h1>Firewall</h1>
-                    <p>
-                        Um firewall é um dispositivo de segurança da rede que monitora o tráfego de rede de entrada e
-                        saída e decide permitir ou bloquear tráfegos específicos de acordo com um conjunto definido de
-                        regras de segurança. O firewall utilizado nesse trabalho foi o UFW, pois o mesmo já vem
-                        instalado em distribuições linux como a utilizada na criação da box desse trabalho a bionic64.
-                    </p>
-                    <p>
-                        Por ser um firewall que já vem instalado na distribuição linux utilizada, no playbook de
-                        provisionamento foi necessário apenas fazer a ativação do firewall. O mesmo foi configurado para
-                        liberar acesso a todas as portas definindo a política como "allow" como na imagem abaixo.
-                    </p>
-                    <img src="imagens/firewallPlaybook.png" alt="Playbook firewall">
-                    <p>
-                        Também separadamente há configurada uma play que habilita o tráfego pela porta 80, a porta
-                        responsável pelo protocolo http, da forma com que está escrito esse playbook, essa play não tem
-                        utilidade, já que a política do firewall já habilita o tráfego na porta 80. Porém essa play foi
-                        mantida para permitir que seja feito o teste de funcionamento do firewall. Para testar o
-                        firewall execute as ações listadas abaixo:
-                    </p>
-                    <ol>
-                        <li>Execute o vagrantfile desse trabalho utilizando o comando "vagrant up";</li>
-                        <li>Acesse a página web em seu navegador pela url "http://192.168.56.56";</li>
-                        <li>Note que a página está acessível;</li>
-                        <li>Altere o playbook em "provisioning/firewall/firewall.yml" com a regra "deny" para a play
-                            "Allow http traffic ufw" conforme a imagem abaixo;</li>
-                        <img src="imagens/denyHttp.png" alt="Deny http">
-                        <li>Execute o comando "vagrant provision" e acesse a url "http://192.168.56.56" novamente e
-                            perceba que o site não está mais acessível.</li>
-                        <img src="imagens/firewallDeny.png" width="800" height="600" alt="Http traffic denied">
-                    </ol>
-                    <p>
-                        Para visualizar os arquivos de provisionamento acesse esse projeto no github clicando <a
-                            href="https://github.com/AntonioCruzCC/RedesAvaliacao3" target="blank">aqui</a>
-                    </p>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="email" role="tabpanel" aria-labelledby="email-tab">
-                <div class="container-fluid">
-                    <h1>Email</h1>
-                    <p>
-                        Um servidor de email é um serviço de hospedagem de e-mail no qual eles são armazenados.
-                        Estes serviços são responsáveis pelo direcionamento de um e-mail de um remetente até seu
-                        destinatário.
+            <p>Regras para o serviço de E-mail: </p>
 
-                    </p>
-                    <p>
-                        Neste trabalho, demonstramos o servidor de e-mail sendo colocado para rodar em uma box, como
-                        também o a sua utilização:
+            <ul>
+                <li>Bloqueio de domínios de e-mail (BlackList);</li>
 
-                    </p>
+                <li>Bloqueios de tipos de anexo por extensão;</li>
 
-                    <p>
-                        <li>O servidor de e-mails escolhido para realização do desenvolvimento do projeto foi o Postfix,
-                            o qual é um software open source
-                            que atua como um agente de transferência de e-mails.</li>
-                        A imagem abaixo demonstra o PLAYBOOK de criação e inicialização do servidor, qual é chamado
-                        através do Vagrantfile:
-                        <img src="imagens/Email_yml.png" alt="Playbook email">
-                    </p>
-                    <p>
-                    <h2>Utilizando o servidor de e-mail</h2>
-                    Para utilizar o servidor de e-mail e testa-lo realize o seguinte processo:
-                    realize a criação de um usuário destinatário:
-                    $ adduser destinatario
-                    <img src="imagens/Criar_User_Email.png" alt="Criação de Usuário">
-                    Após criado o usuário, será demonstrado o processo de envio de um e-mail:
+                <li>Bloqueio de envio de links no corpo do e-mail.</li>
+            </ul>
 
-                    </p>
-                    <p>
-                        Realize o acesso o servidor via telnet:
+            <br>
 
-                    <p> $ telnet localhost 25 no terminal do telnet, insira os comandos para crição e envio do e-mail:
-                    </p>
-                    <br> MAIL FROM: root@localhost
-                    <br> RCPT TO: destinatario@localhost
-                    <br> DATA
-                    <br> Subject: Título do Email
-                    <br> Mensagem Teste
-                    <br> .
-                    <br> Obs: O ponto (.) refere-se ao final do corpo e-mail.
-                    <br> Após o envio, saia do telnet com o comando: $quit
-                    <br>
-                    <img src="imagens/Teste_Email.png" alt="Envio do E-mail">
-                    <p> Para verificar o e-mail, acesse através dos comandos:
-                        <br> $ su destinatario
-                        <br>$ mail
-                    </p>
+            <p>Regras para o serviço de FTP: </p>
 
-                    <img src="imagens/email.png" alt="Visualização do E-mail">
+            <ul>
+                <li>Bloqueio de upload tipo de arquivo por extensão (Ex: .exe);(Antônio)(Implementado) </li>
 
-                    </p>
-                    <p>
+                <li>Restrição de upload tamanho de arquivo (Ex: 50Kb); </li>
 
-                        Para visualizar os arquivos de provisionamento acesse esse projeto no github clicando <a
-                            href="https://github.com/AntonioCruzCC/RedesAvaliacao3" target="blank">aqui</a>
+                <li>Restrição de diretórios por IP ou Usuário (Ex: Pasta compartilhada para todos e pasta privada para
+                    usuário). </li>
+            </ul>
 
-                    </p>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="database" role="tabpanel" aria-labelledby="database-tab">
-                <div class="container-fluid">
-                    <h1>Banco de Dados MySQL</h1>
-                    <p>
-                        O MySQL é um sistema de gerenciamento de banco de dados (SGBD), que utiliza a linguagem SQL
-                        (Linguagem de Consulta Estruturada) como interface. É atualmente um dos sistemas de
-                        gerenciamento de bancos de dados mais populares da Oracle Corporation, com mais de 10 milhões de
-                        instalações pelo mundo.
-                    </p>
-                    <p>
-                        Nesse trabalho o SGBD MySQL foi instalado na box utilizando o vagrant com o provisionador
-                        ansible, foi configurada a senha "password" para o usuário root e criado um banco de dados
-                        chamado "test". O ansible pode ser utilizado para provisionar um banco de dados e carregar
-                        informações para o mesmo através de um arquivo de dump, porém para testes não foi adicionado
-                        nenhum dado no banco test.
-                    </p>
-                    <p>
-                        Para validar o funcionamento do banco de dados MySQL siga os seguintes passos:
-                    </p>
-                    <ol>
-                        <li>Execute o vagrantfile desse trabalho utilizando o comando "vagrant up";</li>
-                        <li>Acesse a box criada utilizando o comando "vagrant ssh";</li>
-                        <li>Dentro do shell da box criada utilize o comando "sudo mysql -u root -p";</li>
-                        <li>Digite a senha do usuário root, a senha é "password".</li>
-                    </ol>
-                    <img src="imagens/acessandoMysql.png" alt="Acessando o MySQL">
-                    <p>
-                        Feito isso você estará conectado no shell do MySQL e poderá utilizar os comandos para acessar o
-                        banco de dados teste, importar dados, ou inserir dados manualmente.
-                    </p>
-                    <p>
-                        Para visualizar os arquivos de provisionamento acesse esse projeto no github clicando <a
-                            href="https://github.com/AntonioCruzCC/RedesAvaliacao3" target="blank">aqui</a>
-                    </p>
-                </div>
-            </div>
-        </div>
+            <br>
 
+            <p>Regras para o serviço de Firewall: </p>
+            <ul>
+                <li>Bloqueio de acesso de determinados IPs ao servidor de páginas (BlackList);</li>
 
+                <li>Bloqueio de aplicações peer-to-peer (Torrent); </li>
+
+                <li>Desabilitar saída de ssh do servidor.</li>
+            </ul>
+
+            <br>
+
+            <p>Regras para o serviço de Proxy: </p>
+
+            <ul>
+                <li>Controle de acesso por horário (Ex: Redes sociais liberadas apenas das 12:00 as 13:00); </li>
+
+                <li>Controle de largura de banda(Ex: Youtube com banda limitada); </li>
+
+                <li>Bloqueio de sites com expressões regulares (.io, .gov, .edu, .tech, etc.). </li>
+            </ul>
+
+            <br>
+
+            <p>Regras para o serviço de servidor Samba: </p>
+
+            <ul>
+                <li>Controle de acesso por usuários; </li>
+
+                <li>Controle de permissões em determinados diretórios (Ex: Diretório público read only e diretórios
+                    pessoais com escrita liberada);</li>
+
+                <li>Controle de Senha – Expira X dias ou Necessário X caracteres.</li>
+            </ul>
+
+            <p>Das regras acima as seguintes foram definidas pelo grupo como “Regras Diferenciadas”</p>
+            <ul>
+
+                <li>Proxy - Controle de largura de banda.</li>
+
+                <li>E-mail - Bloqueio de envio de links no corpo do e-mail.</li>
+
+                <li>Firewall - Bloqueio de aplicações a partir de um range de portas- Ex: peer-to-peer (Torrent) e
+                    portas.</li>
+            </ul>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
 </body>
 
 </html>

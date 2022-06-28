@@ -21,6 +21,16 @@
         src: ./vsftpd.conf            
         dest: /etc/vsftpd.conf
       notify: restart vsftp
+
+    - name: send users list
+      copy:
+        src: ./vsftpd.chroot_list.lst
+        dest: /etc/vsftpd.chroot_list.lst
+        owner: vagrant
+        group: vagrant
+        mode: '0644'
+      notify: restart vsftp
+
     #CREATE A LOGIN USER TO THE SERVER
     - name: create a login user
       become: yes
@@ -28,6 +38,20 @@
         name: teste
         password: "$6$vOBO1TyfSTrtR$zq9vCB2EsfOWs0pIo4hhsbEO1DlfGhVWNu7ZSoWcfX3ntvZ6YfzHRBgMaPDmhqWa07jNg2IQRUcKy7tAEim5G0"
       notify: restart vsftp
+
+    - name: Creating users teste2
+      user:
+        name: teste2
+        password: "$6$Yfc9la.SqvhtwXaz$1ZAt0/9TwDTwlOfokWMkTxBIARzbbBfbHGOVg1cm2Gsr2DPlUgI2J52gMsHZwWH02phvat5YjLTBNGKSAS3Nu1"
+
+    - name: Give the users folders onwnership to root
+      file:
+        path: "{{ item }}"
+        owner: root
+        group: root
+      with_items:
+        - /home/teste
+        - /home/teste2
   handlers:
   #RESTART VSFTP SERVICE
   - name: restart vsftp

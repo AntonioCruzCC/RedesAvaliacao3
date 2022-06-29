@@ -54,7 +54,7 @@
     - name: set Samba passwords for each user
       shell: "{{ item }}"
       with_items:
-        - printf '123\n123\n' | smbpasswd -a vagrant
+        - printf '1234\n1234\n' | smbpasswd -a vagrant
         - printf '1234\n1234\n' | smbpasswd -a employee
         - pdbedit -P "min password length" -C 8
         - pdbedit -P "maximum password age" -C 604800

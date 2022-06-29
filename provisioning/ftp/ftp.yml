@@ -43,15 +43,6 @@
       user:
         name: teste2
         password: "$6$Yfc9la.SqvhtwXaz$1ZAt0/9TwDTwlOfokWMkTxBIARzbbBfbHGOVg1cm2Gsr2DPlUgI2J52gMsHZwWH02phvat5YjLTBNGKSAS3Nu1"
-
-    - name: Give the users folders onwnership to root
-      file:
-        path: "{{ item }}"
-        owner: root
-        group: root
-      with_items:
-        - /home/teste
-        - /home/teste2
   handlers:
   #RESTART VSFTP SERVICE
   - name: restart vsftp

@@ -22,15 +22,6 @@
         dest: /etc/vsftpd.conf
       notify: restart vsftp
 
-    - name: send users list
-      copy:
-        src: ./vsftpd.chroot_list.lst
-        dest: /etc/vsftpd.chroot_list.lst
-        owner: vagrant
-        group: vagrant
-        mode: '0644'
-      notify: restart vsftp
-
     #CREATE A LOGIN USER TO THE SERVER
     - name: create a login user
       become: yes
